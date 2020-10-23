@@ -28,10 +28,21 @@ export default {
 $main-color: #004989;
 $background-blue: #2f3a4f;
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+input:focus {
+  outline: none;
+}
+
 body {
   margin: 0;
   width: 100%;
   background-color: $main-color;
+  overflow: hidden;
 }
 
 .main-container {
@@ -46,7 +57,6 @@ body {
 
   .main-content {
     grid-column: 2 / 3;
-    height: auto;
   }
 }
 </style>
