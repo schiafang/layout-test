@@ -2,12 +2,10 @@
   <div id="app">
     <Navbar />
     <div class="main-container">
-      <div class="sidebar">
-        <Sidebar />
-      </div>
-      <div class="main-content">
-        <router-view />
-      </div>
+      <transition name="expand">
+        <Sidebar v-if="sidebarToggle" />
+      </transition>
+      <router-view />
     </div>
   </div>
 </template>
@@ -20,43 +18,35 @@ export default {
   name: 'App',
   components: {
     Navbar, Sidebar
+  },
+  data() {
+    return {
+      sidebarToggle: true,
+    }
+  },
+  mounted() {
+    this.$bus.$on('toggleSidebar', () => {
+      this.sidebarToggle = !this.sidebarToggle
+    })
   }
 }
 </script>
 
-<style lang="scss" >
-$main-color: #004989;
-$background-blue: #2f3a4f;
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-input:focus {
-  outline: none;
-}
-
-body {
-  margin: 0;
-  width: 100%;
-  background-color: $main-color;
-  overflow: hidden;
-}
+<style lang="scss">
+@import '@/assets/_base.scss';
 
 .main-container {
-  display: grid;
-  grid-template-columns: 230px 1fr;
-  height: 100vh;
+  display: flex;
+  margin-top: 60px;
+  width: 100%;
+}
 
-  .sidebar {
-    grid-column: 1 / 2;
-    background-color: $background-blue;
-  }
+.expand-enter-active {
+  transition: all 0.5s ease-out;
+}
 
-  .main-content {
-    grid-column: 2 / 3;
-  }
+.expand-enter,
+.expand-leave-to {
+  transform: translateX(-250px);
 }
 </style>

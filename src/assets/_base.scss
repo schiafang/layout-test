@@ -1,0 +1,30 @@
+$main-color: #004989;
+$light-blue:#2c94f0;
+$background-blue: #2f3a4f;
+$price: #e19116;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+input:focus,
+button:focus,
+label:focus {
+  outline: none;
+}
+
+body {
+  color: $background-blue;
+  margin: 0;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.pointer:hover {
+  cursor: pointer;
+}

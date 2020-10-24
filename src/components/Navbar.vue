@@ -1,10 +1,12 @@
 <template>
   <div class="nav">
     <div class="nav-left">
-      <div class="hamburger-wrapper">
+      <div class="hamburger-wrapper" @click="toggleSidebar">
         <div class="hamburger"></div>
       </div>
-      <img class="brand" src="../assets/logo.png" alt="logo" />
+      <router-link to="/">
+        <img class="brand" src="../assets/logo.png" alt="logo" />
+      </router-link>
     </div>
 
     <div class="nav-right">
@@ -36,18 +38,27 @@ export default {
       user: {
         name: '陳明倫',
         image: 'https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/1200px-SpongeBob_SquarePants_character.svg.png'
-      }
+      },
+      sidebarToggle: false,
+    }
+  },
+  methods: {
+    toggleSidebar(e) {
+      this.$bus.$emit('toggleSidebar', e)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-$background-blue: #2f3a4f;
-$main-color: #004989;
+@import '@/assets/_base.scss';
 
 i:hover {
   cursor: pointer;
+}
+
+.container {
+  height: 100%;
 }
 
 .nav {
@@ -57,7 +68,10 @@ i:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 15px;
+  padding: 0 30px;
+  position: fixed;
+  top: 0;
+  z-index: 99;
 
   i {
     color: #fff;
@@ -77,7 +91,7 @@ i:hover {
 .hamburger-wrapper {
   width: 25px;
   height: 25px;
-  margin-right: 10px;
+  margin-right: 30px;
   display: flex;
   align-items: center;
 
@@ -108,7 +122,7 @@ i:hover {
 }
 
 .brand {
-  height: 40px;
+  height: 50px;
 }
 
 .search-bar {

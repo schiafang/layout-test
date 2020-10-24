@@ -7,6 +7,11 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/product',
+    name: 'ProductIndex',
+    component: Product
+  },
+  {
+    path: '/product/:id',
     name: 'Product',
     component: Product
   }
